@@ -4,6 +4,7 @@
  * This is the tweets widget.
  *
  * @author Jonas De Keukelaere <jonas@sumocoders.be>
+ * @author Toon Daelman <toon@sumocoders.be>
  */
 class FrontendTwitterWidgetTweets extends FrontendBaseWidget
 {

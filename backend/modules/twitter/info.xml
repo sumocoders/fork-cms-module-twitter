@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<name>twitter</name>
+	<version>1.0.0</version>
+	<requirements>
+		<minimum_version>3.5.0</minimum_version>
+	</requirements>
+	<description>
+		<![CDATA[
+			A basic Twitter module for Fork CMS.
+		]]>
+	</description>
+	<authors>
+		<author>
+			<name><![CDATA[Jonas De Keukelaere]]></name>
+			<url><![CDATA[https://github.com/jonasdekeukelaere]]></url>
+		</author>
+		<author>
+			<name><![CDATA[Toon Daelman]]></name>
+			<url><![CDATA[https://github.com/turanct]]></url>
+		</author>
+	</authors>
+</module>
