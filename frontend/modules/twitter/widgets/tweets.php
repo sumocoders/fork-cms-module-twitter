@@ -33,7 +33,12 @@ class FrontendTwitterWidgetTweets extends FrontendBaseWidget
 	 */
 	private function parse()
 	{
-		// assign data
-		$this->tpl->assign('widgetTwitterTweets', FrontendTwitterModel::getLastTweets(FrontendModel::getModuleSetting('twitter', 'count') ?: 10));
+		// We'll cache the tweets
+		$this->tpl->cache(FRONTEND_LANGUAGE . '_twitterWidgetTweetsCache', (10 * 60 * 60));
+
+		if(!$this->tpl->isCached(FRONTEND_LANGUAGE . '_twitterWidgetTweetsCache')) {
+			// assign data
+			$this->tpl->assign('widgetTwitterTweets', FrontendTwitterModel::getLastTweets(FrontendModel::getModuleSetting('twitter', 'count') ?: 10));
+		}
 	}
 }
