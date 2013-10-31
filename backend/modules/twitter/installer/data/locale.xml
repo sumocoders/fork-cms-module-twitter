@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+    <backend>
+        <core>
+            <item type="label" name="Twitter">
+                <translation language="nl"><![CDATA[twitter]]></translation>
+                <translation language="en"><![CDATA[twitter]]></translation>
+                <translation language="fr"><![CDATA[twitter]]></translation>
+            </item>
+            <item type="label" name="Tweets">
+                <translation language="nl"><![CDATA[tweets]]></translation>
+                <translation language="en"><![CDATA[tweets]]></translation>
+                <translation language="fr"><![CDATA[tweets]]></translation>
+            </item>
+        </core>
+        <twitter>
+            <item type="label" name="Timeline">
+                <translation language="nl"><![CDATA[tijdlijn]]></translation>
+                <translation language="en"><![CDATA[timeline]]></translation>
+                <translation language="fr"><![CDATA[chronologie]]></translation>
+            </item>
+            <item type="label" name="Accounts">
+                <translation language="nl"><![CDATA[accounts]]></translation>
+                <translation language="en"><![CDATA[accounts]]></translation>
+                <translation language="fr"><![CDATA[comptes]]></translation>
+            </item>
+            <item type="label" name="Hashtags">
+                <translation language="nl"><![CDATA[hashtags]]></translation>
+                <translation language="en"><![CDATA[hashtags]]></translation>
+                <translation language="fr"><![CDATA[hashtags]]></translation>
+            </item>
+        </twitter>
+    </backend>
+</locale>
