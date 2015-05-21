@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <Backend>
+    <Core>
+      <item type="label" name="Twitter">
+        <translation language="nl"><![CDATA[twitter]]></translation>
+        <translation language="en"><![CDATA[twitter]]></translation>
+        <translation language="fr"><![CDATA[twitter]]></translation>
+      </item>
+      <item type="label" name="Tweets">
+        <translation language="nl"><![CDATA[tweets]]></translation>
+        <translation language="en"><![CDATA[tweets]]></translation>
+        <translation language="fr"><![CDATA[tweets]]></translation>
+      </item>
+    </Core>
+    <Twitter>
+      <item type="label" name="Timeline">
+        <translation language="nl"><![CDATA[tijdlijn]]></translation>
+        <translation language="en"><![CDATA[timeline]]></translation>
+        <translation language="fr"><![CDATA[chronologie]]></translation>
+      </item>
+      <item type="label" name="TwitterConsumerKey">
+        <translation language="nl"><![CDATA[Consumer Key (API Key)]]></translation>
+        <translation language="en"><![CDATA[Consumer Key (API Key)]]></translation>
+        <translation language="fr"><![CDATA[Consumer Key (API Key)]]></translation>
+      </item>
+      <item type="label" name="TwitterConsumerSecret">
+        <translation language="nl"><![CDATA[Consumer Secret (API Secret)]]></translation>
+        <translation language="en"><![CDATA[Consumer Secret (API Secret)]]></translation>
+        <translation language="fr"><![CDATA[Consumer Secret (API Secret)]]></translation>
+      </item>
+      <item type="label" name="TwitterOauthToken">
+        <translation language="nl"><![CDATA[Access Token]]></translation>
+        <translation language="en"><![CDATA[Access Token]]></translation>
+        <translation language="fr"><![CDATA[Access Token]]></translation>
+      </item>
+      <item type="label" name="TwitterOauthTokenSecret">
+        <translation language="nl"><![CDATA[Access Token Secret]]></translation>
+        <translation language="en"><![CDATA[Access Token Secret]]></translation>
+        <translation language="fr"><![CDATA[Access Token Secret]]></translation>
+      </item>
+      <item type="label" name="Hashtags">
+        <translation language="nl"><![CDATA[filter op de volgende hashtags]]></translation>
+        <translation language="en"><![CDATA[filter on the following hashtags]]></translation>
+        <translation language="fr"><![CDATA[filtrer sur les hashtags suivants]]></translation>
+      </item>
+      <item type="label" name="CountTweets">
+        <translation language="nl"><![CDATA[aantal tweets]]></translation>
+        <translation language="en"><![CDATA[number of tweets]]></translation>
+        <translation language="fr"><![CDATA[nombre de tweets]]></translation>
+      </item>
+      <item type="label" name="Accounts">
+        <translation language="nl"><![CDATA[twitter accounts]]></translation>
+        <translation language="en"><![CDATA[twitter accounts]]></translation>
+        <translation language="fr"><![CDATA[comptes twitter]]></translation>
+      </item>
+      <item type="message" name="NoAccounts">
+        <translation language="nl"><![CDATA[er zijn geen twitter accounts gekoppeld]]></translation>
+        <translation language="en"><![CDATA[there are no twitter accounts linked]]></translation>
+        <translation language="fr"><![CDATA[il n'y a pas de comptes twitter liés]]></translation>
+      </item>
+      <item type="message" name="NoHashtags">
+        <translation language="nl"><![CDATA[er wordt niet op hashtags gefilterd]]></translation>
+        <translation language="en"><![CDATA[there is no filter based on hashtags]]></translation>
+        <translation language="fr"><![CDATA[ne est pas filtré par hashtags]]></translation>
+      </item>
+      <item type="message" name="HelpTwitterConsumerKey">
+        <translation language="nl">
+          <![CDATA[
+                <p>
+                  Registreer een toepassing op <a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a> om Fork CMS toe te staan te connecteren met je Twitter account.<br />
+                  Na het registreren van je toepassing, kan je er de benodige consumer key & secret vinden.<br />
+                  Zorg ervoor dat de Callback URL (vb. je website's url): dit markeert je Twitter applicatie als "web app", wat nodig is om de authenticatie te voltooien.
+                </p>
+            ]]>
+        </translation>
+        <translation language="en">
+          <![CDATA[
+                <p>
+                  Registreer een toepassing op <a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a> om Fork CMS toe te staan te connecteren met je Twitter account.<br />
+                  Na het registreren van je toepassing, kan je er de benodige consumer key & secret vinden.<br />
+                  Zorg ervoor dat de Callback URL (vb. je website's url): dit markeert je Twitter applicatie als "web app", wat nodig is om de authenticatie te voltooien.
+                </p>
+            ]]>
+        </translation>
+        <translation language="fr">
+          <![CDATA[
+                <p>
+                  Registreer een toepassing op <a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a> om Fork CMS toe te staan te connecteren met je Twitter account.<br />
+                  Na het registreren van je toepassing, kan je er de benodige consumer key & secret vinden.<br />
+                  Zorg ervoor dat de Callback URL (vb. je website's url): dit markeert je Twitter applicatie als "web app", wat nodig is om de authenticatie te voltooien.
+                </p>
+            ]]>
+        </translation>
+      </item>
+      <item type="message" name="HelpTwitterConsumerSecret">
+        <translation language="nl">
+          <![CDATA[
+                <p>
+                  Registreer een toepassing op <a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a> om Fork CMS toe te staan te connecteren met je Twitter account.<br />
+                  Na het registreren van je toepassing, kan je er de benodige consumer key & secret vinden.<br />
+                  Zorg ervoor dat de Callback URL (vb. je website's url): dit markeert je Twitter applicatie als "web app", wat nodig is om de authenticatie te voltooien.
+                </p>
+            ]]>
+        </translation>
+        <translation language="en">
+          <![CDATA[
+                <p>
+                  Register an application at <a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a> to allow Fork CMS to connect with your Twitter account.<br />
+                  After registering your application, you should find the required consumer key & secret.<br />
+                  Make sure you enter a Callback URL (e.g. your website's url): this marks your Twitter application as "web app", which is required to complete the authentication.
+                </p>
+            ]]>
+        </translation>
+        <translation language="fr">
+          <![CDATA[
+                <p>
+                  Créer une demande à l'adresse <a href="https://dev.twitter.com/apps"> https://dev.twitter.com/apps </a> pour permettre Fork CMS se connecte à votre compte Twitter. <Br />
+                  Après l'enregistrement de votre application, vous devriez trouver la clé secrète et des consommateurs requis. <br />
+                  Assurez-vous que vous entrez une URL de rappel (par exemple url de votre site): cette marque votre application Twitter comme "application web", qui est nécessaire pour compléter l'authentification.
+                </p>
+            ]]>
+        </translation>
+      </item>
+      <item type="message" name="HelpTwitterOauthToken">
+        <translation language="nl">
+          <![CDATA[
+            <p>
+              Op de zelfde plaats waar je je app hebt aangemaakt kan je ook de oAuth gegevens aanmaken voor jou account
+            </p>
+          ]]>
+        </translation>
+        <translation language="en">
+          <![CDATA[
+            <p>
+              On the same place where you created your app, you can also can create the oAuth keys for your  account
+            </p>
+          ]]>
+        </translation>
+        <translation language="fr">
+          <![CDATA[
+            <p>
+              Le même endroit où vous avez créé votre application peut peut également créer les données pour vous compte oAuth
+            </p>
+          ]]>
+        </translation>
+      </item>
+      <item type="message" name="HelpTwitterOauthTokenSecret">
+        <translation language="nl">
+          <![CDATA[
+            <p>
+              Op de zelfde plaats waar je je app hebt aangemaakt kan je ook de oAuth gegevens aanmaken voor jou account
+            </p>
+          ]]>
+        </translation>
+        <translation language="en">
+          <![CDATA[
+            <p>
+              On the same place where you created your app, you can also can create the oAuth keys for your  account
+            </p>
+          ]]>
+        </translation>
+        <translation language="fr">
+          <![CDATA[
+            <p>
+              Le même endroit où vous avez créé votre application peut peut également créer les données pour vous compte oAuth
+            </p>
+          ]]>
+        </translation>
+      </item>
+    </Twitter>
+  </Backend>
+</locale>
