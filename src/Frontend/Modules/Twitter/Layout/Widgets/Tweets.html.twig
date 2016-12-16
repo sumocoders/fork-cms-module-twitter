@@ -1,0 +1,15 @@
+{#
+variables that are available:
+- {$widgetTwitterTweets}: contains an array with the tweets. Each element contains data about the tweet.#}
+
+{% for tweet in widgetTwitterTweets %}
+  <div class="tweet">
+    <div class="user">
+      <i class="fa fa-twitter"></i>
+      <a rel="nofollow" href="http://twitter.com/{{ tweet.user.screen_name|raw }}">@{{ tweet.user.screen_name|raw }}</a>
+    </div>
+    <div class="tweet-content">
+      {{ tweet.htmlText|raw }}
+    </div>
+  </div>
+{% endfor %}

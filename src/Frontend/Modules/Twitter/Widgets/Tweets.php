@@ -2,9 +2,12 @@
 
 namespace Frontend\Modules\Twitter\Widgets;
 
+require_once PATH_LIBRARY . '/external/Twitter.php';
+
 use Frontend\Core\Engine\Model as FrontendModel;
 use Frontend\Core\Engine\Base\Widget as FrontendBaseWidget;
 use Frontend\Modules\Twitter\Engine\Model;
+use TijsVerkoyen\Twitter\Twitter;
 
 /**
  * This is the tweets widget.
@@ -39,15 +42,39 @@ class Tweets extends FrontendBaseWidget
      */
     private function parse()
     {
-        // We'll cache the tweets
-        $this->tpl->cache(FRONTEND_LANGUAGE . '_twitterWidgetTweetsCache', (10 * 60 * 60));
+      $consumer_key = $this->get('fork.settings')->get('Core', 'twitter_consumer_key', null);
+      $consumer_secret = $this->get('fork.settings')->get('Core', 'twitter_consumer_secret', null);
+      $oauth_token = $this->get('fork.settings')->get('Core', 'twitter_oauth_token', null);
+      $oauth_token_secret = $this->get('fork.settings')->get('Core', 'twitter_oauth_token_secret', null);
 
-        if (!$this->tpl->isCached(FRONTEND_LANGUAGE . '_twitterWidgetTweetsCache')) {
-            // assign data
-            $this->tpl->assign(
-                'widgetTwitterTweets',
-                Model::getLastTweets(FrontendModel::getModuleSetting('Twitter', 'count') ?: 10)
-            );
-        }
+      // init vars
+      $accountsString = $this->get('fork.settings')->get('Twitter', 'accounts', '');
+      $accounts = $accountsString == '' ? array() : explode(',', $accountsString);
+      $hashtagsString = $this->get('fork.settings')->get('Twitter', 'hashtags', '');
+      $hashtags = $hashtagsString == '' ? array() : explode(',', $hashtagsString);
+
+      // create instance & set some properties
+      $twitter = new Twitter($consumer_key, $consumer_secret);
+      $twitter->setOAuthToken($oauth_token);
+      $twitter->setOAuthTokenSecret($oauth_token_secret);
+
+      $tweets =  array();
+
+      $pool = $this->get('cache.pool');
+      $item = $pool->getItem('tweets');
+      if (!is_null($item->get())) {
+        $tweets = $item->get();
+      }else {
+        $tweets =  Model::getLastTweets($this->get('fork.settings')->get('Twitter', 'count') ?: 10, $twitter, $accounts, $hashtags);
+        $item->set($tweets);
+        $item->expiresAfter(600); //cache for 10 minutes
+        $pool->save($item);
+      }
+
+        // assign data
+        $this->tpl->assign(
+            'widgetTwitterTweets',
+            $tweets
+        );
     }
 }
