@@ -3,6 +3,8 @@
 namespace Backend\Modules\Twitter\Installer;
 
 use Backend\Core\Installer\ModuleInstaller;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * Installer for the twitter module
@@ -16,6 +18,11 @@ class Installer extends ModuleInstaller
      */
     public function install()
     {
+
+        // Copy twitter.php
+        $fs = new Filesystem();
+        $fs->copy(dirname(__FILE__) . '/Twitter.php', PATH_LIBRARY . '/external/Twitter.php');
+
         // add 'twitter' as a module
         $this->addModule('Twitter', 'The twitter module.');
 
@@ -35,5 +42,7 @@ class Installer extends ModuleInstaller
 
         // add extra's
         $this->insertExtra($this->getModule(), 'widget', 'Tweets', 'Tweets', null, 'N', 6000);
+
+
     }
 }

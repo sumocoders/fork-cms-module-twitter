@@ -1,11 +1,7 @@
 <?php
 
 namespace Frontend\Modules\Twitter\Engine;
-
-require_once PATH_LIBRARY . '/external/Twitter.php';
-
 use Frontend\Core\Engine\Model as FrontendModel;
-use TijsVerkoyen\Twitter\Twitter;
 
 /**
  * In this file we store all generic functions that we will be using in the twitter module
@@ -20,24 +16,8 @@ class Model
      * @param int [optional] $limit The number of tweets to get.
      * @return array
      */
-    public static function getLastTweets($limit = 10)
+    public static function getLastTweets($limit = 10, $twitter, $accounts, $hashtags)
     {
-        $consumer_key = FrontendModel::getModuleSetting('Core', 'twitter_consumer_key', null);
-        $consumer_secret = FrontendModel::getModuleSetting('Core', 'twitter_consumer_secret', null);
-        $oauth_token = FrontendModel::getModuleSetting('Core', 'twitter_oauth_token', null);
-        $oauth_token_secret = FrontendModel::getModuleSetting('Core', 'twitter_oauth_token_secret', null);
-
-        // create instance & set some properties
-        $twitter = new Twitter($consumer_key, $consumer_secret);
-        $twitter->setOAuthToken($oauth_token);
-        $twitter->setOAuthTokenSecret($oauth_token_secret);
-
-        // init vars
-        $accountsString = FrontendModel::getModuleSetting('Twitter', 'accounts', '');
-        $accounts = $accountsString == '' ? array() : explode(',', $accountsString);
-        $hashtagsString = FrontendModel::getModuleSetting('Twitter', 'hashtags', '');
-        $hashtags = $hashtagsString == '' ? array() : explode(',', $hashtagsString);
-
         $tweetsArray = array();
         foreach ($accounts as $account) {
             try {
