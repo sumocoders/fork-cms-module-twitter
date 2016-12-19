@@ -1,6 +1,7 @@
 <?php
 
 namespace Frontend\Modules\Twitter\Engine;
+
 use Frontend\Core\Engine\Model as FrontendModel;
 
 /**

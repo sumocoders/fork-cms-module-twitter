@@ -93,7 +93,9 @@ class Twitter
      */
     public function __destruct()
     {
-        if($this->curl != null) curl_close($this->curl);
+        if ($this->curl != null) {
+            curl_close($this->curl);
+        }
     }
 
     /**
@@ -105,7 +107,9 @@ class Twitter
     protected function buildQuery(array $parameters)
     {
         // no parameters?
-        if(empty($parameters)) return '';
+        if (empty($parameters)) {
+            return '';
+        }
 
         // encode the keys
         $keys = self::urlencode_rfc3986(array_keys($parameters));
@@ -122,7 +126,9 @@ class Twitter
         // loop parameters
         foreach ($parameters as $key => $value) {
             // sort by value
-            if(is_array($value)) $parameters[$key] = natsort($value);
+            if (is_array($value)) {
+                $parameters[$key] = natsort($value);
+            }
         }
 
         // process parameters
@@ -171,7 +177,9 @@ class Twitter
         // loop parameters
         foreach ($parameters as $key => $value) {
             // sort by value
-            if(is_array($value)) $parameters[$key] = natsort($value);
+            if (is_array($value)) {
+                $parameters[$key] = natsort($value);
+            }
         }
 
         // process queries
@@ -326,8 +334,7 @@ class Twitter
     protected function doCall(
         $url, array $parameters = null, $authenticate = false, $method = 'GET',
         $filePath = null, $expectJSON = true, $returnHeaders = false
-    )
-    {
+    ) {
         // allowed methods
         $allowedMethods = array('GET', 'POST');
 
@@ -356,7 +363,9 @@ class Twitter
 
         // set data
         $data = $oauth;
-        if(!empty($parameters)) $data = array_merge($data, $parameters);
+        if (!empty($parameters)) {
+            $data = array_merge($data, $parameters);
+        }
 
         // calculate the base string
         $base = $this->calculateBaseString(
@@ -377,8 +386,11 @@ class Twitter
                 $mimeType = 'application/octet-stream';
                 if ($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg') {
                     $mimeType = 'image/jpeg';
-                } elseif($fileInfo['extension'] == 'gif') $mimeType = 'image/gif';
-                elseif($fileInfo['extension'] == 'png') $mimeType = 'image/png';
+                } elseif ($fileInfo['extension'] == 'gif') {
+                    $mimeType = 'image/gif';
+                } elseif ($fileInfo['extension'] == 'png') {
+                    $mimeType = 'image/png';
+                }
 
                 // init var
                 $content = '--' . $boundary . "\r\n";
@@ -401,13 +413,17 @@ class Twitter
             }
 
             // no file
-            else $options[CURLOPT_POSTFIELDS] = $this->buildQuery($parameters);
+            else {
+                $options[CURLOPT_POSTFIELDS] = $this->buildQuery($parameters);
+            }
 
             // enable post
             $options[CURLOPT_POST] = true;
         } else {
             // add the parameters into the querystring
-            if(!empty($parameters)) $url .= '?' . $this->buildQuery($parameters);
+            if (!empty($parameters)) {
+                $url .= '?' . $this->buildQuery($parameters);
+            }
             $options[CURLOPT_POST] = false;
         }
 
@@ -435,7 +451,9 @@ class Twitter
         $options[CURLOPT_HTTPHEADER] = $headers;
 
         // init
-        if($this->curl == null) $this->curl = curl_init();
+        if ($this->curl == null) {
+            $this->curl = curl_init();
+        }
 
         // set options
         curl_setopt_array($this->curl, $options);
@@ -449,10 +467,14 @@ class Twitter
         $errorMessage = curl_error($this->curl);
 
         // return the headers
-        if($returnHeaders) return $headers;
+        if ($returnHeaders) {
+            return $headers;
+        }
 
         // we don't expext JSON, return the response
-        if(!$expectJSON) return $response;
+        if (!$expectJSON) {
+            return $response;
+        }
 
         // replace ids with their string values, added because of some
         // PHP-version can't handle these large values
@@ -510,7 +532,9 @@ class Twitter
                 throw new \Exception($json['errors'][0]['message']);
             } elseif (isset($json['errors']) && is_string($json['errors'])) {
                 throw new \Exception($json['errors']);
-            } else throw new \Exception('Invalid response.');
+            } else {
+                throw new \Exception('Invalid response.');
+            }
         }
 
         // any error
@@ -707,8 +731,7 @@ class Twitter
     public function statusesMentionsTimeline(
         $count = null, $sinceId = null, $maxId = null,
         $trimUser = null, $contributorDetails = null, $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = null;
         $parameters['include_rts'] = 'true';
@@ -759,8 +782,7 @@ class Twitter
         $userId = null, $screenName = null, $sinceId = null, $count = null,
         $maxId = null, $trimUser = null, $excludeReplies = null,
         $contributorDetails = null, $includeRts = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new \Exception('Specify an userId or a screenName.');
@@ -820,8 +842,7 @@ class Twitter
         $count = null, $sinceId = null, $maxId = null, $trimUser = null,
         $excludeReplies = null, $contributorDetails = null,
         $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = null;
         if ($count != null) {
@@ -867,8 +888,7 @@ class Twitter
     public function statusesRetweetsOfMe(
         $count = null, $sinceId = null, $maxId = null,
         $trimUser = null, $includeEntities = null, $includeUserEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = null;
         if ($count != null) {
@@ -935,8 +955,7 @@ class Twitter
      */
     public function statusesShow(
         $id, $trimUser = null, $includeMyRetweet = null, $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['id'] = (string) $id;
         if ($trimUser !== null) {
@@ -967,7 +986,9 @@ class Twitter
     {
         // build parameters
         $parameters = null;
-        if($trimUser !== null) $parameters['trim_user'] = ($trimUser) ? 'true' : 'false';
+        if ($trimUser !== null) {
+            $parameters['trim_user'] = ($trimUser) ? 'true' : 'false';
+        }
 
         // make the call
         return (array) $this->doCall(
@@ -991,8 +1012,7 @@ class Twitter
     public function statusesUpdate(
         $status, $inReplyToStatusId = null, $lat = null, $long = null,
         $placeId = null, $displayCoordinates = null, $trimUser = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['status'] = (string) $status;
         if ($inReplyToStatusId != null) {
@@ -1066,8 +1086,7 @@ class Twitter
         $id = null, $url = null, $maxwidth = null, $hideMedia = null,
         $hideThread = null, $omitScript = null, $align = null, $related = null,
         $lang = null
-    )
-    {
+    ) {
         if ($id == null && $url == null) {
             throw new \Exception('Either id or url should be specified.');
         }
@@ -1129,8 +1148,7 @@ class Twitter
         $q, $geocode = null, $lang = null, $locale = null, $resultType= null,
         $count = null, $until = null, $sinceId = null, $maxId = null,
         $includeEntities = null
-    )
-    {
+    ) {
         $parameters['q'] = (string) $q;
         if ($geocode !== null) {
             $parameters['geocode'] = (string) $geocode;
@@ -1223,8 +1241,7 @@ class Twitter
     public function directMessages(
         $sinceId = null, $maxId = null, $count = null, $page = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = array();
         if ($sinceId != null) {
@@ -1267,8 +1284,7 @@ class Twitter
     public function directMessagesSent(
         $sinceId = null, $maxId = null, $count = null, $page = null,
         $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = array();
         if ($sinceId != null) {
@@ -1344,8 +1360,7 @@ class Twitter
      */
     public function directMessagesNew(
         $userId = null, $screenName = null, $text
-    )
-    {
+    ) {
         // validate
         if ($userId == null && $screenName == null) {
             throw new \Exception('One of user_id or screen_name are required.');
@@ -1381,8 +1396,7 @@ class Twitter
      */
     public function friendsIds(
         $userId = null, $screenName = null, $cursor = null, $stringifyIds = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new \Exception('Specify an userId or a screenName.');
@@ -1420,8 +1434,7 @@ class Twitter
      */
     public function followersIds(
         $userId = null, $screenName = null, $cursor = null, $stringifyIds = true
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new \Exception('Specify an userId or a screenName.');
@@ -1486,7 +1499,9 @@ class Twitter
     {
         // build parameters
         $parameters = null;
-        if($cursor != null) $parameters['cursor'] = (string) $cursor;
+        if ($cursor != null) {
+            $parameters['cursor'] = (string) $cursor;
+        }
         $parameters['stringify_ids'] = ((bool) $stringifyIds) ? 'true' : 'false';
 
         // make the call
@@ -1506,7 +1521,9 @@ class Twitter
     {
         // build parameters
         $parameters = null;
-        if($cursor != null) $parameters['cursor'] = (string) $cursor;
+        if ($cursor != null) {
+            $parameters['cursor'] = (string) $cursor;
+        }
         $parameters['stringify_ids'] = ((bool) $stringifyIds) ? 'true' : 'false';
 
         // make the call
@@ -1527,8 +1544,7 @@ class Twitter
      */
     public function friendshipsCreate(
         $userId = null, $screenName = null, $follow = false
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new \Exception('Specify an userId or a screenName.');
@@ -1591,8 +1607,7 @@ class Twitter
      */
     public function friendshipsUpdate(
         $userId = null, $screenName = null, $device = null, $retweets = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new \Exception('Specify an userId or a screenName.');
@@ -1672,8 +1687,7 @@ class Twitter
     public function friendsList(
         $userId = null, $screenName = null, $cursor = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -1717,8 +1731,7 @@ class Twitter
     public function followersList(
         $userId = null, $screenName = null, $cursor = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -1771,8 +1784,7 @@ class Twitter
      */
     public function accountVerifyCredentials(
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = null;
         if ($includeEntities !== null) {
@@ -1803,8 +1815,7 @@ class Twitter
         $trendLocationWoeId = null, $sleepTimeEnabled = null,
         $startSleepTime = null, $endSleepTime = null, $timeZone = null,
         $lang = null
-    )
-    {
+    ) {
         // build parameters
         if ($trendLocationWoeId !== null) {
             $parameters['trend_location_woeid'] = (string) $trendLocationWoeId;
@@ -1844,8 +1855,7 @@ class Twitter
      */
     public function accountUpdateDeliveryDevice(
         $device, $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['device'] = (string) $device;
         if ($includeEntities !== null) {
@@ -1915,7 +1925,9 @@ class Twitter
 
         // build parameters
         $parameters = null;
-        if($tile) $parameters['tile'] = 'true';
+        if ($tile) {
+            $parameters['tile'] = 'true';
+        }
         if ($includeEntities !== null) {
             $parameters['include_entities'] = ($includeEntities) ? 'true' : 'false';
         }
@@ -1943,14 +1955,12 @@ class Twitter
         $profileBackgroundColor = null, $profileTextColor = null,
         $profileLinkColor = null, $profileSidebarFillColor = null,
         $profileSidebarBorderColor = null, $includeEntities = null
-    )
-    {
+    ) {
         // validate
         if ($profileBackgroundColor == '' && $profileTextColor == '' &&
             $profileLinkColor == '' && $profileSidebarFillColor == '' &&
             $profileSidebarBorderColor == ''
-        )
-        {
+        ) {
             throw new Exception('Specify a profileBackgroundColor, profileTextColor, profileLinkColor, profileSidebarFillColor or a profileSidebarBorderColor.');
         }
 
@@ -2016,8 +2026,7 @@ class Twitter
      */
     public function blocksList(
         $cursor = null, $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = null;
         if ($cursor !== null) {
@@ -2072,8 +2081,7 @@ class Twitter
     public function blocksCreate(
         $userId = null, $screenName = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -2111,8 +2119,7 @@ class Twitter
     public function blocksDestroy(
         $userId = null, $screenName = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -2145,8 +2152,7 @@ class Twitter
      */
     public function usersLookup(
         $userIds = null, $screenNames = null, $includeEntities = null
-    )
-    {
+    ) {
         // redefine
         $userIds = (array) $userIds;
         $screenNames = (array) $screenNames;
@@ -2170,7 +2176,6 @@ class Twitter
 
         // make the call
         return (array) $this->doCall('users/lookup.json', $parameters, true);
-
     }
 
     /**
@@ -2184,8 +2189,7 @@ class Twitter
      */
     public function usersShow(
         $userId = null, $screenName = null, $includeEntities = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -2219,12 +2223,15 @@ class Twitter
      */
     public function usersSearch(
         $q, $page = null, $count = null, $includeEntities = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['q'] = (string) $q;
-        if($page != null) $parameters['page'] = (int) $page;
-        if($count != null) $parameters['count'] = (int) $count;
+        if ($page != null) {
+            $parameters['page'] = (int) $page;
+        }
+        if ($count != null) {
+            $parameters['count'] = (int) $count;
+        }
         if ($includeEntities !== null) {
             $parameters['include_entities'] = ($includeEntities) ? 'true' : 'false';
         }
@@ -2245,8 +2252,7 @@ class Twitter
     public function usersContributees(
         $userId = null, $screenName = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -2284,8 +2290,7 @@ class Twitter
     public function usersContributors(
         $userId = null, $screenName = null,
         $includeEntities = null, $skipStatus = null
-    )
-    {
+    ) {
         // validate
         if ($userId == '' && $screenName == '') {
             throw new Exception('Specify an userId or a screenName.');
@@ -2350,8 +2355,12 @@ class Twitter
 
         // build parameters
         $parameters = null;
-        if($userId != null) $parameters['user_id'] = (string) $userId;
-        if($screenName != null) $parameters['screen_name'] = (string) $screenName;
+        if ($userId != null) {
+            $parameters['user_id'] = (string) $userId;
+        }
+        if ($screenName != null) {
+            $parameters['screen_name'] = (string) $screenName;
+        }
 
         return (array) $this->doCall(
             'users/profile_banner.json',
@@ -2371,7 +2380,9 @@ class Twitter
     public function usersSuggestionsSlug($slug, $lang = null)
     {
         $parameters = null;
-        if($lang != null) $parameters['lang'] = (string) $lang;
+        if ($lang != null) {
+            $parameters['lang'] = (string) $lang;
+        }
 
         return (array) $this->doCall(
             'users/suggestions/' . (string) $slug . '.json',
@@ -2388,7 +2399,9 @@ class Twitter
     public function usersSuggestions($lang = null)
     {
         $parameters = null;
-        if($lang != null) $parameters['lang'] = (string) $lang;
+        if ($lang != null) {
+            $parameters['lang'] = (string) $lang;
+        }
 
         return (array) $this->doCall(
             'users/suggestions.json',
@@ -2433,11 +2446,21 @@ class Twitter
 
         // build parameters
         $parameters = null;
-        if($userId != null) $parameters['user_id'] = (string) $userId;
-        if($screenName != null) $parameters['screen_name'] = (string) $screenName;
-        if($count != null) $parameters['count'] = (int) $count;
-        if($sinceId != null) $parameters['since_id'] = (string) $sinceId;
-        if($maxId != null) $parameters['max_id'] = (string) $maxId;
+        if ($userId != null) {
+            $parameters['user_id'] = (string) $userId;
+        }
+        if ($screenName != null) {
+            $parameters['screen_name'] = (string) $screenName;
+        }
+        if ($count != null) {
+            $parameters['count'] = (int) $count;
+        }
+        if ($sinceId != null) {
+            $parameters['since_id'] = (string) $sinceId;
+        }
+        if ($maxId != null) {
+            $parameters['max_id'] = (string) $maxId;
+        }
         if ($includeEntities !== null) {
             $parameters['include_entities'] = ($includeEntities) ? 'true' : 'false';
         }
@@ -2723,8 +2746,7 @@ class Twitter
      */
     public function geoReverseGeoCode(
         $lat, $long, $accuracy = null, $granularity = null, $maxResults = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['lat'] = (float) $lat;
         $parameters['long'] = (float) $long;
@@ -2762,8 +2784,7 @@ class Twitter
         $lat = null, $long = null, $query = null, $ip = null,
         $granularity = null, $accuracy = null, $maxResults = null,
         $containedWithin = null, array $attributes = null
-    )
-    {
+    ) {
         // build parameters
         $parameters = array();
         if ($lat != null) {
@@ -2814,8 +2835,7 @@ class Twitter
      */
     public function geoSimilarPlaces(
         $lat, $long, $name, $containedWithin = null, array $attributes = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['lat'] = (float) $lat;
         $parameters['long'] = (float) $long;
@@ -2846,8 +2866,7 @@ class Twitter
      */
     public function geoPlace(
         $name, $containedWithin, $token, $lat, $long, array $attributes = null
-    )
-    {
+    ) {
         // build parameters
         $parameters['name'] = (string) $name;
         $parameters['contained_within'] = (string) $containedWithin;
@@ -2903,8 +2922,12 @@ class Twitter
     {
         // build parameters
         $parameters = null;
-        if($lat != null) $parameters['lat_for_trends'] = (float) $lat;
-        if($long != null) $parameters['long_for_trends'] = (float) $long;
+        if ($lat != null) {
+            $parameters['lat_for_trends'] = (float) $lat;
+        }
+        if ($long != null) {
+            $parameters['long_for_trends'] = (float) $long;
+        }
 
         // make the call
         return (array) $this->doCall('trends/available.json', $parameters);
@@ -2922,8 +2945,12 @@ class Twitter
     {
         // build parameters
         $parameters = null;
-        if($lat != null) $parameters['lat'] = (float) $lat;
-        if($long != null) $parameters['long'] = (float) $long;
+        if ($lat != null) {
+            $parameters['lat'] = (float) $lat;
+        }
+        if ($long != null) {
+            $parameters['long'] = (float) $long;
+        }
 
         // make the call
         return (array) $this->doCall('trends/closest.json', $parameters);
@@ -2991,7 +3018,9 @@ class Twitter
      */
     public function oAuthAuthorize($token=null)
     {
-        if(!$token) $token = $this->getOAuthToken();
+        if (!$token) {
+            $token = $this->getOAuthToken();
+        }
 
         header('Location: ' . self::SECURE_API_URL .
                '/oauth/authorize?oauth_token=' . $token);
@@ -3143,5 +3172,3 @@ class Twitter
         );
     }
 }
-
-?>

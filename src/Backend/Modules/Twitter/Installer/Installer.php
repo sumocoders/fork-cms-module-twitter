@@ -42,7 +42,5 @@ class Installer extends ModuleInstaller
 
         // add extra's
         $this->insertExtra($this->getModule(), 'widget', 'Tweets', 'Tweets', null, 'N', 6000);
-
-
     }
 }
